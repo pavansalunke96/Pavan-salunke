@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Pavan Salunke | Portfolio</title>
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --bg-color: #030712;
+            --card-bg: rgba(17, 24, 39, 0.8);
+            --primary-glow: #06b6d4;
+            --secondary-glow: #8b5cf6;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --nav-height: 70px;
+        }
+/* --- Contact Box & Form --- */
+.contact-box { text-align:center; background: linear-gradient(145deg,#0f172a,#020617); padding:50px; border-radius:30px; border:1px solid rgba(56,189,248,0.2); width:100%; max-width:600px; margin:auto; }
+.contact-box form { display:flex; flex-direction:column; gap:15px; margin-top:20px; }
+.contact-box input, .contact-box textarea { padding:10px; border-radius:5px; border:1px solid #555; background:#111; color:white; width:100%; }
+.contact-box textarea { height:120px; resize:none; }
+.contact-box button { padding:12px; border:none; border-radius:5px; background:#38bdf8; color:#020617; font-weight:700; cursor:pointer; transition:0.3s; }
+.contact-box button:hover { background:#0ea5e9; }
+
+        html { 
+            scroll-behavior: smooth; 
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Inter', system-ui, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Prevent fixed nav from covering content when jumping to IDs */
+        section, .container, footer {
+            scroll-margin-top: var(--nav-height);
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(3, 7, 18, 0.7);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-content {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-decoration: none;
+            background: linear-gradient(to right, var(--primary-glow), var(--secondary-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links { display: flex; gap: 25px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary-glow); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 80vh;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: calc(var(--nav-height) + 40px) 20px 40px 20px;
+            gap: 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-text { flex: 1; }
+        .hero-text h2 {
+            font-size: 1.2rem;
+            color: var(--primary-glow);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin: 10px 0;
+            line-height: 1.1;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+        }
+
+        /* --- PROFILE PICTURE --- */
+        .profile-container {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .profile-pic {
+            width: 280px;
+            height: 280px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            overflow: hidden; /* Ensures image stays inside the shape */
+            border: 4px solid var(--primary-glow);
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.3);
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 50% 50% 20% 80% / 25% 80% 20% 75%; }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        }
+
+        /* --- BUTTON STYLES --- */
+        .connect-btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--primary-glow);
+            color: var(--bg-color) !important;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+            animation: pulseGlow 2s infinite;
+        }
+
+        .connect-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px var(--primary-glow);
+            background: #fff;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(6, 182, 212, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+        }
+
+        /* --- BACKGROUND --- */
+        .bg-image {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop');
+            background-size: cover; z-index: -2; opacity: 0.2;
+        }
+
+        .bg-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent, var(--bg-color));
+            z-index: -1;
+        }
+
+        /* --- EXPERIENCE SECTION --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .tracer-area { position: relative; padding-left: 50px; }
+        .vertical-line-bg {
+            position: absolute; left: 20px; top: 0; bottom: 0;
+            width: 2px; background: rgba(255, 255, 255, 0.1);
+        }
+
+        #tracer-progress-line {
+            position: absolute; left: 20px; top: 0; width: 2px;
+            background: linear-gradient(to bottom, var(--primary-glow), var(--secondary-glow));
+            box-shadow: 0 0 15px var(--primary-glow);
+            z-index: 2; height: 0; transition: height 0.4s ease-out;
+        }
+
+        .milestone {
+            position: relative; margin-bottom: 80px; opacity: 0;
+            transform: translateY(30px); transition: all 0.8s ease-out;
+        }
+
+        .milestone.active { opacity: 1; transform: translateY(0); }
+        .dot {
+            position: absolute; left: -41px; top: 12px;
+            width: 14px; height: 14px; background: #1f2937;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%; z-index: 3;
+        }
+
+        .milestone.active .dot {
+            background: var(--primary-glow);
+            box-shadow: 0 0 12px var(--primary-glow);
+            transform: scale(1.3);
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            padding: 25px; border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- FOOTER & SOCIALS --- */
+        footer {
+            margin-top: 100px; padding: 60px 20px; text-align: center;
+            background: rgba(17, 24, 39, 0.9); border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--primary-glow);
+            transform: translateY(-3px);
+        }
+
+        .fa-instagram:hover {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .hero { flex-direction: column-reverse; text-align: center; padding-top: 120px; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .profile-pic { width: 220px; height: 220px; }
+            .nav-links { gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-content">
+            <a href="#home" class="logo">PAVAN.DEV</a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg-image"></div>
+    <div class="bg-overlay"></div>
+
+    <section class="hero" id="home">
+        <div class="hero-text">
+            <h2>Web Developer</h2>
+            <h1>Hi, I'm <span style="color: var(--primary-glow);">Pavan Salunke</span></h1>
+            <p> I am studying in FYIT . Information Technology (IT) is the use of computers, software, and networks to store, process, and share information. It plays an important role in modern life and is used in many fields such as education, business, healthcare, and banking.</p>
+            <div style="margin-top: 30px;">
+                <a href="#experience" class="connect-btn">Explore My Journey</a>
+            </div>
+        </div>
+        <div class="profile-container">
+     <!-- ✅ UPDATED IMAGE HERE -->
+    <div class="profile-pic">
+        <img src="https://iili.io/qKmhiDN.md.jpg" alt="Pavan Salunke">
+    </div>
+
+
+</div>
+        </div>
+    </section>
+
+    <div class="container" id="experience">
+        <header style="text-align: left; margin-bottom: 60px;">
+            <h1 style="font-size: 2.5rem;">Professional Path</h1>
+            <p>A timeline of my growth and technical milestones.</p>
+        </header>
+
+        <div class="tracer-area" id="main-tracer">
+            <div class="vertical-line-bg"></div>
+            <div id="tracer-progress-line"></div>
+            <div id="experience-list"></div>
+        </div>
+    </div>
+
+      <div class="footer-content">
+                   </div>
+    </footer><br><br>
+<!-- Contact Section -->
+<section id="contact">
+  <div class="contact-box reveal">
+    <h1>Let's <span class="highlight">Work Together</span></h1>
+    <p class="subtitle">I'm looking for junior developer opportunities and open-source contributions.</p>
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="_replyto" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <div style="margin-top:20px; display:flex; gap:15px; justify-content:center; flex-wrap:wrap;">
+      <a href="OmSantoshCV.pdf" download class="btn-github"><i class="fas fa-download"></i> Download CV</a>
+      <a href="mailto:om@example.com" class="btn-github" style="background:transparent; border:1px solid #38bdf8; color:#38bdf8;"><i class="fas fa-envelope"></i> Email Me</a>
+    </div>
+</div>
+<footer><h2 style="font-size: 2rem;"><center>Let's Connect<center></h2>     
+            <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin: 30px 0;">
+                <a href="https://github.com/yourusername" class="social-link" target="_blank">
+                    <i class="fab fa-github" style="font-size: 1.5rem;"></i> GitHub
+                </a>
+        
+              <a href="https://linkedin.com/in/yourusername" class="social-link" target="_blank">
+                    <i class="fab fa-linkedin" style="font-size: 1.5rem;"></i> LinkedIn
+                </a>
+                <a href="https://www.instagram.com/96_pavan_17?igsh=MTltN2pxYXlnOGpxaw==" class="social-link" target="_blank">
+                    <i class="fab fa-instagram" style="font-size: 1.5rem;"></i> Instagram
+                </a>
+                <a href="pavansalunke96@gmail.com" class="social-link">
+                    <i class="fas fa-envelope" style="font-size: 1.5rem;"></i> Email
+                </a>
+            </div>
+           
+
+<p class="copyright">&copy; 2026 Pavan Salunke. Built with Tracker Logic.</p>
+  </div>
+ </footer>
+</section>
+
+    <script>
+        const experienceData = [
+            { year: "2025", role: "Web Designing", desc: "Developing modern web interfaces using HTML, CSS, and JavaScript.", skills: ["HTML", "CSS","JAVASCRIPT"] },
+            { year: "2025", role: "Programing", desc: "Deep diving into C and C++ for logic building and algorithmic efficiency.", skills: ["C", "C++"] },
+            { year: "2026", role: "Database ", desc: "Managing complex data structures with SQL, MySQL, and PL/SQL.", skills: ["SQL", "MySQL"] }
+        ];
+
+        const listContainer = document.getElementById('experience-list');
+        const progressLine = document.getElementById('tracer-progress-line');
+
+        function init() {
+            listContainer.innerHTML = experienceData.map((exp, index) => `
+                <div class="milestone" id="step-${index}">
+                    <div class="dot"></div>
+                    <div class="card">
+                        <div style="color: var(--primary-glow); font-weight: bold;">${exp.year}</div>
+                        <h3 style="margin: 5px 0;">${exp.role}</h3>
+                        <p style="color: var(--text-secondary);">${exp.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function handleScroll() {
+            const milestones = document.querySelectorAll('.milestone');
+            const triggerZone = window.innerHeight * 0.7;
+            let lastActiveIndex = -1;
+
+            milestones.forEach((el, index) => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < triggerZone) {
+                    el.classList.add('active');
+                    lastActiveIndex = index;
+                } else {
+                    el.classList.remove('active');
+                }
+            });
+
+            if (lastActiveIndex !== -1) {
+                const activeMilestone = document.getElementById(`step-${lastActiveIndex}`);
+                const dot = activeMilestone.querySelector('.dot');
+                progressLine.style.height = `${dot.offsetTop + 7}px`;
+            } else {
+                progressLine.style.height = `0px`;
+            }
+        }
+
+        init();
+        window.addEventListener('scroll', handleScroll);
+        // Initial call to set state
+        handleScroll();
+    </script>
+</body>
+</html>
